@@ -1,0 +1,85 @@
+<template>
+
+    <template lwc:if={accountdetails}>
+        <div class="slds-border_top slds-border_bottom slds-border_right slds-border_bottom slds-border_left">
+
+            <div class="header slds-align_absolute-center" style="height:3rem"><h2 class="logo">Profile Details</h2></div>
+
+            <div lwc:if={bCustomerDetailsUpdated}>
+                Successfully saved...
+            </div>
+
+            <div class="slds-align_absolute-center" lwc:if={bSpinner}>
+                <lightning-spinner alternative-text="Loading" size="large">
+                </lightning-spinner>
+            </div>
+            
+
+            <div class="slds-grid slds-wrap slds-p-around_medium">
+
+                <div class="slds-col slds-size_1-of-1">
+                    <span>
+                        <lightning-input type="text" label="Name" value={accountdetails.Name} disabled></lightning-input>
+                    </span>
+                </div>
+                <div class="slds-col slds-size_1-of-1">
+                    <span>
+                        <lightning-input type="tel" label="Phone" value={accountdetails.Phone} onchange={handlePhoneChange}
+                        disabled={bDisableEditDetails}></lightning-input>
+                    </span>
+                </div>
+
+                <div class="slds-col slds-size_1-of-2 slds-p-right_x-small">
+                    <span>
+                        <lightning-combobox
+                            name="ShoeSize"
+                            label="Shoe Size"
+                            value={accountdetails.Shoe_Size__c}
+                            placeholder="Select Shoe Size"
+                            options={lstShoeSizeOptions}
+                            onchange={handleShoeSize} 
+                            disabled={bDisableEditDetails}>
+                        </lightning-combobox>
+                    </span>
+                </div>
+
+                <div class="slds-col slds-size_1-of-2 slds-p-left_x-small">
+                    <span>
+                        <lightning-combobox
+                            name="TShirtSize"
+                            label="T-Shirt Size"
+                            value={accountdetails.Shirt_Size__c}
+                            placeholder="Select T-Shirt Size"
+                            options={lstTshirtSizeOptions}
+                            onchange={handleTshirtSize} 
+                            disabled={bDisableEditDetails}>
+                        </lightning-combobox>
+                    </span>
+                </div>
+                
+                <template lwc:if={bDisableEditDetails}>
+                    <div class="slds-col slds-size_1-of-1">
+                        <span class="slds-align_absolute-center">
+                            <lightning-button variant="brand" label="Edit" title="Edit" onclick={handleEdit}></lightning-button>
+                        </span>
+                    </div>
+                </template>
+
+                <template lwc:else>
+                    <div class="slds-col slds-size_1-of-1">
+                        <span class="slds-align_absolute-center">
+                            <lightning-button label="Cancel" title="Cancel" onclick={handleCancel} class="slds-p-right_x-small"></lightning-button>
+                            <lightning-button variant="brand" label="Save" title="Save" onclick={handleSave} class="slds-p-left_x-small"></lightning-button>
+                        </span>
+                    </div>
+                </template>
+
+            </div>
+        </div>
+    </template>
+    <template lwc:else>
+        <lightning-spinner alternative-text="Loading" size="medium"></lightning-spinner>
+    </template>
+    
+    
+</template>

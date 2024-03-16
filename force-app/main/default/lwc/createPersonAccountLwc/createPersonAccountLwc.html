@@ -1,0 +1,64 @@
+<template>
+
+    <div class="slds-grid slds-wrap">
+        <div class="slds-col slds-size_1-of-3">
+            <span>
+
+            </span>
+        </div>
+
+        <div class="slds-col slds-size_1-of-3">
+            <lightning-card>
+                <div lwc:if={bSpinner}>
+                    <lightning-spinner alternative-text="Loading" size="medium"></lightning-spinner>
+                </div>
+
+                <lightning-record-edit-form object-api-name={objectApiName} onsuccess={handleSuccess}
+                    record-id={accountId} onload={handleload}>
+
+                    <div
+                        class="slds-border_top slds-border_bottom slds-border_right slds-border_bottom slds-border_left">
+
+                        <div class="header slds-align_absolute-center" style="height:3rem">
+                            <h2 class="logo">Create Person Account</h2>
+                        </div>
+                        <div class="slds-grid slds-wrap slds-p-around_medium">
+
+                            <div class="slds-col slds-size_1-of-1">
+                                <span>
+                                    <lightning-input-field field-name='Name'></lightning-input-field>
+                                </span>
+                            </div>
+                            <div class="slds-col slds-size_1-of-1">
+                                <span>
+                                    <lightning-input-field field-name='Phone'></lightning-input-field>
+                                </span>
+                            </div>
+                            <div class="slds-col slds-size_1-of-1">
+                                <span>
+                                    <lightning-input-field field-name='Email__c'></lightning-input-field>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="slds-col slds-size_1-of-1">
+                        <span class="slds-align_absolute-center slds-p-top_x-small">
+                            <lightning-button type="submit" variant="brand" label="Create" title="Save"
+                                onclick={handleSave}></lightning-button>
+                        </span>
+                    </div>
+                </lightning-record-edit-form>
+            </lightning-card>
+
+        </div>
+
+        <div class="slds-col slds-size_1-of-3">
+            <span>
+
+            </span>
+        </div>
+    </div>
+
+
+</template>
